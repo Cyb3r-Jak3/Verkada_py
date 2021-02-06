@@ -39,7 +39,7 @@ def test_organization_notifications(requests_mock, default_org):
     notification = notifications[0]
     assert notification["notification_type"] == "person_of_interest"
     assert len(notification["objects"]) == 0
-    assert notification["camera_id"] == "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68"
+    assert notification["camera_id"] == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
     assert notification["crowd_threshold"] is None
     assert notification["person_label"] == "API DUMMY"
     assert notification["created"] == 156156156
@@ -53,9 +53,9 @@ def test_organization_get_poi(get_poi):
     assert len(poi) == 1
     single_entry = poi[0]
     assert single_entry["label"] == "API DUMMY"
-    assert single_entry["person_id"] == "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr"
+    assert single_entry["person_id"] == "078bffa7-20cf-4307-a047-29e98b340e8e"
     assert single_entry["created"] == 156156156
-    assert single_entry["last_seen_camera_id"] == "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68"
+    assert single_entry["last_seen_camera_id"] == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
     assert single_entry["last_seen"] == 1561561565
 
 
@@ -68,16 +68,16 @@ def test_failed_poi(get_failed_poi):
 def test_organization_create_poi(create_poi):
     org = Organization()
     new_poi = org.create_poi(image="{}/criminal.jpg".format(TEST_PATH), label="API DUMMY")
-    assert new_poi == "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr"
+    assert new_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
 
 
 def test_organization_update_poi(update_poi):
     org = Organization()
-    updated_poi = org.update_poi("86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr", "API_DUMMY_2")
-    assert updated_poi == "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr"
+    updated_poi = org.update_poi("078bffa7-20cf-4307-a047-29e98b340e8e", "API_DUMMY_2")
+    assert updated_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
 
 
 def test_organization_delete_poi(delete_poi):
     org = Organization()
-    deleted_poi = org.delete_poi("86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr")
-    assert deleted_poi == "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr"
+    deleted_poi = org.delete_poi("078bffa7-20cf-4307-a047-29e98b340e8e")
+    assert deleted_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"

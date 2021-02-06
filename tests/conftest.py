@@ -36,21 +36,21 @@ def create_poi(requests_mock, default_org):
 @pytest.fixture
 def update_poi(requests_mock, default_org):
     return requests_mock.patch(
-        "https://api.verkada.com/orgs/test_org_id/persons_of_interest/86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr",
+        "https://api.verkada.com/orgs/test_org_id/persons_of_interest/078bffa7-20cf-4307-a047-29e98b340e8e",
         json=create_person_of_interest)
 
 
 @pytest.fixture
 def delete_poi(requests_mock, default_org):
     return requests_mock.delete(
-        "https://api.verkada.com/orgs/test_org_id/persons_of_interest/86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr",
+        "https://api.verkada.com/orgs/test_org_id/persons_of_interest/078bffa7-20cf-4307-a047-29e98b340e8e",
         json=create_person_of_interest)
 
 
 @pytest.fixture
 def footage_link(requests_mock, default_org):
     return requests_mock.get(
-        "https://api.verkada.com/orgs/test_org_id/cameras/rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68/history/200",
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/history/200",
         json=footage_link_response
     )
 
@@ -58,7 +58,7 @@ def footage_link(requests_mock, default_org):
 @pytest.fixture
 def failed_footage_link(requests_mock, default_org):
     return requests_mock.get(
-        "https://api.verkada.com/orgs/test_org_id/cameras/rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68/history/200",
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/history/200",
         status_code=500
     )
 
@@ -66,7 +66,7 @@ def failed_footage_link(requests_mock, default_org):
 @pytest.fixture
 def camera_thumbnail_link(requests_mock, default_org):
     return requests_mock.get(
-        "https://api.verkada.com/orgs/test_org_id/cameras/rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68/thumbnail/200",
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/thumbnail/200",
         json=thumbnail_link_response
     )
 
@@ -74,6 +74,6 @@ def camera_thumbnail_link(requests_mock, default_org):
 @pytest.fixture
 def failed_camera_thumbnail(requests_mock, default_org):
     return requests_mock.get(
-        "https://api.verkada.com/orgs/test_org_id/cameras/rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68/thumbnail/200",
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/thumbnail/200",
         status_code=500
     )

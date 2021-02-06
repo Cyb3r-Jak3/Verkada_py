@@ -1,10 +1,10 @@
 camera_response = {
     "cameras": [{
-        "camera_id": "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68",
-        "cloud_rentention": "30 Days",
+        "camera_id": "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8",
+        "cloud_rentention": 30,
         "date_added": 90,
-        "device_retention": "30 Days",
-        "firmware": "latest",
+        "device_retention": 30,
+        "firmware": "Up to date",
         "local_ip": "192.168.0.1",
         "location": "cloud",
         "mac": "C9-67-EB-8D-BA-E3",
@@ -20,7 +20,7 @@ notification_response = {
     "notifications": [
         {
             "notification_type": "person_of_interest",
-            "camera_id": "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68",
+            "camera_id": "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8",
             "crowd_threshold": None,
             "objects": [],
             "person_label": "API DUMMY",
@@ -36,7 +36,7 @@ notification_pagination_response = {
     "notifications": [
         {
             "notification_type": "motion",
-            "camera_id": "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68",
+            "camera_id": "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8",
             "crowd_threshold": None,
             "objects": [],
             "person_label": None,
@@ -52,16 +52,16 @@ get_person_of_interest = {
     "persons_of_interest": [
         {
             "label": "API DUMMY",
-            "person_id": "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr",
+            "person_id": "078bffa7-20cf-4307-a047-29e98b340e8e",
             "created": 156156156,
-            "last_seen_camera_id": "rzabvxfk-7a67-zc4lm-8p0v-k23mi9houom3g68",
+            "last_seen_camera_id": "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8",
             "last_seen": 1561561565
         }
     ]
 }
 create_person_of_interest = {
     "label": "API DUMMY",
-    "person_id": "86g3mouo-h9im-32kv-0p8m-l4cz76a7kfxvbazr"
+    "person_id": "078bffa7-20cf-4307-a047-29e98b340e8e"
 }
 
 footage_link_response = {

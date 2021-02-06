@@ -1,19 +1,39 @@
 """Organization Class"""
 # Built-in
 import base64
+from typing import List
+
 # 3rd Party
 from requests import HTTPError
+
 # Internal
 from verkada_py.shared import SharedAttributes
 from verkada_py.camera import Camera
 
 
 class Organization(SharedAttributes):
-    def __init__(self):
-        super().__init__()
-        self.cameras = self._get_cameras()
+    """
+    Organization represents a Verkada organization.
+    It has a api-key and organization ID which is needed to make requests
+    """
 
-    def _get_cameras(self) -> list:
+    def __init__(self, get_cameras: bool = True):
+        """
+        Parameters
+        ----------
+        get_cameras: A bool if to get all the cameras for the organization. Enabled by default
+        """
+        super().__init__()
+        if get_cameras:
+            self.cameras = self._get_cameras()
+
+    def _get_cameras(self) -> List[Camera]:
+        """
+        Gets all the cameras for an organization.
+        Returns
+        -------
+            A list of cameras in the organzation.
+        """
         camera_resp = self._session.get(self.url + "cameras")
         try:
             camera_resp.raise_for_status()
@@ -27,7 +47,8 @@ class Organization(SharedAttributes):
         start_time: int = None,
         end_time: int = None,
         include_image: str = "false",
-        notification_types: str = "person_of_interest,tamper,crowd,motion,camera_offline,camera_online",
+        notification_types: str = "person_of_interest,tamper,crowd,"
+        "motion,camera_offline,camera_online",
     ) -> list:
         """
         Gets all the notifications for an organization
@@ -103,10 +124,14 @@ class Organization(SharedAttributes):
         """
         with open(image, "rb") as image_file:
             encoded_image = base64.urlsafe_b64encode(image_file.read())
-        return self._session.post(
-            self.url + "persons_of_interest",
-            params={"base64_image": encoded_image, "label": label},
-        ).json().get("person_id")
+        return (
+            self._session.post(
+                self.url + "persons_of_interest",
+                params={"base64_image": encoded_image, "label": label},
+            )
+            .json()
+            .get("person_id")
+        )
 
     def update_poi(self, person_id: str, label: str) -> str:
         """
@@ -122,9 +147,14 @@ class Organization(SharedAttributes):
         -------
         The person ID that had a label change
         """
-        return self._session.patch(
-            self.url + "persons_of_interest/{}".format(person_id), json={"label": label}
-        ).json().get("person_id")
+        return (
+            self._session.patch(
+                self.url + "persons_of_interest/{}".format(person_id),
+                json={"label": label},
+            )
+            .json()
+            .get("person_id")
+        )
 
     def delete_poi(self, person_id: str):
         """
@@ -139,7 +169,11 @@ class Organization(SharedAttributes):
         -------
         A string of the person of interest that was deleted
         """
-        return self._session.delete(self.url + "persons_of_interest/{}".format(person_id)).json().get("person_id")
+        return (
+            self._session.delete(self.url + "persons_of_interest/{}".format(person_id))
+            .json()
+            .get("person_id")
+        )
 
     def __str__(self):
         return f"Verkada Organization {self.org_id}"
