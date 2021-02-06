@@ -19,9 +19,9 @@ setup(
         },
         download_url="https://github.com/Cyb3r-Jak3/Verkada_py/releases/latest",
         packages=[
-            "src"
+            "verkada_py"
         ],
-        package_dir={"src": "src"},
+        package_dir={"verkada_py": "verkada_py"},
         tests_require=[
             "bandit>=1.6.2",
             "black>=20.8b1",
@@ -29,7 +29,8 @@ setup(
             "flake8>=3.8.4",
             "pylint>=2.6.0",
             "pytest>=6.1.2",
-            "pytest-cov>=2.10.1"
+            "pytest-cov>=2.10.1",
+            "requests-mock[fixture]==1.8.0"
         ],
         install_requires=install_reqs,
         license="MPL 2.0",
