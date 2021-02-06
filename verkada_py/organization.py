@@ -17,7 +17,9 @@ class Organization(SharedAttributes):
     It has a api-key and organization ID which is needed to make requests
     """
 
-    def __init__(self, get_cameras: bool = True, org_id: str = None, api_key: str = None):
+    def __init__(
+        self, get_cameras: bool = True, org_id: str = None, api_key: str = None
+    ):
         """
         Parameters
         ----------
@@ -40,7 +42,10 @@ class Organization(SharedAttributes):
         except HTTPError:
             return []
 
-        return [Camera(camera, self.api_key, self.org_id) for camera in camera_resp.json()["cameras"]]
+        return [
+            Camera(camera, self.api_key, self.org_id)
+            for camera in camera_resp.json()["cameras"]
+        ]
 
     def get_notifications(
         self,
