@@ -37,7 +37,9 @@ class Camera(SharedAttributes):
         self._info = info
         self.cam_url = self.url + f"cameras/{self.id}"
 
-    def get_object_count(self, start_time: int = None, end_time: int = None) -> Dict[str, int]:
+    def get_object_count(
+        self, start_time: int = None, end_time: int = None
+    ) -> Dict[str, int]:
         """
             Gets the number of detected people and vehicles for a camera
         Parameters
