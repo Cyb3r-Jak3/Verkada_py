@@ -31,8 +31,8 @@ class Camera(SharedAttributes):
     Camera class represents a camera in a Verkada Organization.
     """
 
-    def __init__(self, info: dict):
-        super().__init__()
+    def __init__(self, info: dict, api_key: str = None, org_id: str = None):
+        super().__init__(api_key=api_key, org_id=org_id)
         self._info = info
         self.cam_url = self.url + f"cameras/{self.id}"
 

@@ -1,4 +1,5 @@
 from setuptools import setup
+from verkada_py import __version__
 
 
 install_reqs = open("requirements.txt").readlines()
@@ -7,7 +8,7 @@ readme = open("README.md").read()
 
 setup(
         name="verkada_py",
-        version="1.0.0",
+        version=__version__,
         description="Unofficial Verkada API Python Library",
         long_description=readme,
         author="Cyber_Jake",

@@ -60,17 +60,17 @@ jobs:
         pip install . -r requirements-dev.txt
 
     - name: Python Black
-      run: black --check src
+      run: black --check verkada_py
 
     - name: Pylint
-      run: pylint src
+      run: pylint verkada_py
 
     - name: Flake8
-      run: flake8 --statistics --show-source --count src
+      run: flake8 --statistics --show-source --count verkada_py
 
     - name: Bandit
-      run: bandit -r src
+      run: bandit -r verkada_py
 
     - name: Tests
-      run: py.test --cov src tests/ -vv
+      run: py.test --cov verkada_py tests/ -vv
 

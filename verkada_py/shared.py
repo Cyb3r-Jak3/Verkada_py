@@ -1,5 +1,6 @@
 """Shared Classes and values"""
 import requests
+import os
 
 __version__ = "0.0.1-dev"
 
@@ -8,9 +9,9 @@ class SharedAttributes:
     """Class that gets used by Organization and Camera class to share attributes"""
 
     # pylint: disable=too-few-public-methods
-    def __init__(self):
-        self.api_key = "test_api_key"
-        self.org_id = "test_org_id"
+    def __init__(self, api_key: str = None, org_id: str = None):
+        self.api_key = api_key if api_key else os.environ["API_KEY"]
+        self.org_id = org_id if org_id else os.environ["ORG_ID"]
         self.url = "https://api.verkada.com/orgs/{}/".format(self.org_id)
         self._session = self._create_session()
 

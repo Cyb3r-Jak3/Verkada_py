@@ -6,7 +6,7 @@ TEST_PATH = os.path.abspath(os.path.dirname(__file__))
 
 
 def test_organization(default_org):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     assert isinstance(org, Organization)
     assert org.api_key == "test_api_key"
     assert org.org_id == "test_org_id"
@@ -17,7 +17,7 @@ def test_organization(default_org):
 
 
 def test_failed_organization(failure_org):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     assert len(org.cameras) == 0
 
 
@@ -32,7 +32,7 @@ def test_organization_notifications(requests_mock, default_org):
         "=200",
         json=notification_pagination_response
     )
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     notifications = org.get_notifications()
     assert isinstance(notifications, list)
     assert len(notifications) == 2
@@ -48,7 +48,7 @@ def test_organization_notifications(requests_mock, default_org):
 
 
 def test_organization_get_poi(get_poi):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     poi = org.get_poi()
     assert len(poi) == 1
     single_entry = poi[0]
@@ -60,24 +60,24 @@ def test_organization_get_poi(get_poi):
 
 
 def test_failed_poi(get_failed_poi):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     poi = org.get_poi()
     assert len(poi) == 0
 
 
 def test_organization_create_poi(create_poi):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     new_poi = org.create_poi(image="{}/criminal.jpg".format(TEST_PATH), label="API DUMMY")
     assert new_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
 
 
 def test_organization_update_poi(update_poi):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     updated_poi = org.update_poi("078bffa7-20cf-4307-a047-29e98b340e8e", "API_DUMMY_2")
     assert updated_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
 
 
 def test_organization_delete_poi(delete_poi):
-    org = Organization()
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
     deleted_poi = org.delete_poi("078bffa7-20cf-4307-a047-29e98b340e8e")
     assert deleted_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
