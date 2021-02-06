@@ -2,8 +2,6 @@
 import requests
 import os
 
-__version__ = "0.0.1-dev"
-
 
 class SharedAttributes:
     """Class that gets used by Organization and Camera class to share attributes"""
@@ -18,6 +16,6 @@ class SharedAttributes:
     def _create_session(self) -> requests.Session:
         session = requests.Session()
         session.headers.update(
-            {"x-api-key": self.api_key, "User-Agent": f"verkadapy v:{__version__}"}
+            {"x-api-key": self.api_key, "User-Agent": f"verkadapy v: 1.0.0"}
         )
         return session
