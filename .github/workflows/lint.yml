@@ -56,21 +56,21 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install --upgrade pip wheel
-        pip install . -r requirements-dev.txt
+        pip install --upgrade pip wheel -r requirements-dev.txt
+        pip install .
 
     - name: Python Black
-      run: black --check python_gh_template
+      run: black --check verkada_py
 
     - name: Pylint
-      run: pylint python_gh_template
+      run: pylint verkada_py
 
     - name: Flake8
-      run: flake8 --statistics --show-source --count python_gh_template
+      run: flake8 --statistics --show-source --count verkada_py
 
     - name: Bandit
-      run: bandit -r python_gh_template
+      run: bandit -r verkada_py
 
     - name: Tests
-      run: py.test --cov python_gh_template tests/ -vv
+      run: py.test --cov verkada_py tests/ -vv
 
