@@ -2,3 +2,5 @@
 ---
 
 Unofficial Verkada API Python Library. Useful for companies looking to easily and pragmatically interact with their Verkada cameras.
+
+Read Verkada's REST API's Documentation here: https://apidocs.verkada.com.

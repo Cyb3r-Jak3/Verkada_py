@@ -56,8 +56,8 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        pip install --upgrade pip wheel
-        pip install . -r requirements-dev.txt
+        pip install --upgrade pip wheel -r requirements-dev.txt
+        pip install .
 
     - name: Python Black
       run: black --check verkada_py
