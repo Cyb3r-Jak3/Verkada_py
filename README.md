@@ -13,7 +13,7 @@ Template Python Repo for getting started with a Python Library with GitHub.
 ## To Use
 
 1. Clone the repo
-2. Rename the [python_GH_template](python_gh_template) directory to the name of your project.
+2. Rename the [python_GH_template](src) directory to the name of your project.
     * Make sure the names updates in [setup.py](setup.py), [lint workflow](.github/workflows/lint.yml).
 3. Install package locally `pip install -e .`
 4. Add your project requirements to [requirements.txt](requirements.txt).
