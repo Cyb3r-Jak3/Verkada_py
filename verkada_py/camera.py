@@ -41,15 +41,10 @@ class Camera(SharedAttributes):
         self, start_time: int = None, end_time: int = None
     ) -> Dict[str, int]:
         """
-            Gets the number of detected people and vehicles for a camera
-        Parameters
-        ----------
-        start_time: The epoch time to start getting the count for
-        end_time: The end epoch time to get the count for
-
-        Returns
-        -------
-            A dict that contains "people" and "vehicles" with an int for each one.
+        Gets the number of detected people and vehicles for a camera
+        :param start_time: ``int`` The epoch time to start getting the count for
+        :param end_time: ``int`` The end epoch time to get the count for
+        :return: ``dict`` that contains "people" and "vehicles" with an int for each one.
         """
         object_resp = self._session.get(
             self.cam_url + "objects/counts",
@@ -79,13 +74,8 @@ class Camera(SharedAttributes):
     def get_footage_link(self, timestamp: int) -> str:
         """
         Get a link to footage for an epoch timestamp
-        Parameters
-        ----------
-        timestamp: Int of epoch timestamp to get footage for
-
-        Returns
-        -------
-        A string of the link to the footage
+        :param timestamp: ``int`` Epoch timestamp to get footage for
+        :return: ``str`` URL to the footage
         """
         footage_resp = self._session.get(self.cam_url + f"/history/{timestamp}")
         try:
@@ -95,16 +85,12 @@ class Camera(SharedAttributes):
         return footage_resp.json()["url"]
 
     @set_default_timestamp
-    def get_thumbnail(self, timestamp: int) -> str:
+    def get_thumbnail_link(self, timestamp: int) -> str:
         """
-        Gets the thumbnail for an epoch time
-        Parameters
-        ----------
-        timestamp: Epoch time to get a thumbnail for
+        Get the thumbnail for an epoch time
+        :param timestamp: ``int`` Epoch time to get a thumbnail for
+        :return: ``str`` URL to the thumbnail
 
-        Returns
-        -------
-        A url of the thumbnail
         """
         thumbnail_resp = self._session.get(self.cam_url + f"/thumbnail/{timestamp}")
         try:
@@ -123,70 +109,98 @@ class Camera(SharedAttributes):
 
     @cached_property
     def id(self) -> str:
-        """The camera ID"""
+        """
+        :return: ``str`` camera ID
+        """
         return self._info["camera_id"]
 
     @cached_property
     def last_online(self) -> int:
-        """Epoch time of when the camera was last online"""
+        """
+        :return: ``int`` Epoch time of when the camera was last online
+        """
         return self._info["last_online"]
 
     @cached_property
-    def cloud_retention(self) -> str:
-        """The amount of days of cloud retention"""
+    def cloud_retention(self) -> int:
+        """
+        :return: ``int`` Amount of days of cloud retention
+        """
         return self._info["cloud_rentention"]
 
     @cached_property
     def date_added(self) -> int:
-        """The epoch time when the camera was added to Command"""
+        """
+        :return: ``int`` Epoch time when the camera was added to Command
+        """
         return int(self._info["date_added"])
 
     @cached_property
     def device_retention(self) -> int:
-        """The amount days of storage on the camera"""
+        """
+        :return: ``int`` Amount of days of storage on the camera
+        """
         return int(self._info["device_retention"])
 
     @cached_property
     def firmware(self) -> bool:
-        """A bool the firmware is up to date."""
+        """
+        :return: ``bool`` If the firmware is up to date
+        """
         return self._info["firmware"] == "Up to date"
 
     @cached_property
     def IP(self) -> str:
-        """The IP of the camera. Likely a private IP"""
+        """
+        :return: ``str`` IP of the camera. Likely a private IP
+        """
         return self._info["local_ip"]
 
     @cached_property
     def location(self) -> str:
-        """The street address of the camera"""
+        """
+        :return: ``str`` Street address of the camera
+        """
         return self._info["location"]
 
     @cached_property
     def MAC(self) -> str:
-        """The MAC address of the camera"""
+        """
+        :return: ``str`` MAC address of the camera
+        """
         return self._info["mac"]
 
     @cached_property
     def model(self) -> str:
-        """Returns the model of the camera"""
+        """
+        :return: ``str`` Model of the camera
+        """
         return self._info["Model"]
 
     @cached_property
     def name(self) -> str:
-        """Returns the name of the camera"""
+        """
+        :return: ``str`` Name of the camera
+        """
         return self._info["name"]
 
     @cached_property
     def serial(self) -> str:
-        """Returns the serial number of the camera"""
+        """
+        :return: Serial number of the camera
+        """
         return self._info["serial"]
 
     @cached_property
     def site(self) -> str:
-        """Returns the site that the camera is in"""
+        """
+        :return: ``str`` Site that the camera is in
+        """
         return self._info["site"]
 
     @cached_property
     def status(self) -> str:
-        """The status of the camera"""
+        """
+        :return: ``str`` Status of the camera
+        """
         return self._info["status"]

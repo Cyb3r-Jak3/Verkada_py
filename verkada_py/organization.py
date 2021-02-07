@@ -21,9 +21,9 @@ class Organization(SharedAttributes):
         self, get_cameras: bool = True, org_id: str = None, api_key: str = None
     ):
         """
-        Parameters
-        ----------
-        get_cameras: A bool if to get all the cameras for the organization. Enabled by default
+        :param get_cameras: ``bool`` Get all the cameras for the organization. Enabled by default
+        :param org_id: ``str`` Organization ID
+        :param api_key: ``str`` API Key for organization
         """
         super().__init__(api_key=api_key, org_id=org_id)
         if get_cameras:
@@ -31,10 +31,8 @@ class Organization(SharedAttributes):
 
     def _get_cameras(self) -> List[Camera]:
         """
-        Gets all the cameras for an organization.
-        Returns
-        -------
-            A list of cameras in the organzation.
+        Get all the cameras for an organization.
+        :return: ``list`` Cameras in the organization.
         """
         camera_resp = self._session.get(self.url + "cameras")
         try:
@@ -51,25 +49,19 @@ class Organization(SharedAttributes):
         self,
         start_time: int = None,
         end_time: int = None,
-        include_image: str = "false",
+        include_image: bool = False,
         notification_types: str = "person_of_interest,tamper,crowd,"
         "motion,camera_offline,camera_online",
-    ) -> list:
+    ) -> List[dict]:
         """
-        Gets all the notifications for an organization
-
-        TODO: Create a class representing an notification
-        Parameters
-        ----------
-        start_time: The start epoch time
-        end_time: The end epoch time
-        include_image: If to include the image for related events
-        notification_types: The notification types to query for
-
-        Returns
-        -------
-        A list of notifications
+        Get all the notifications for an organization
+        :param start_time: ``int`` Start epoch time
+        :param end_time: ``int` End epoch time
+        :param include_image: ``bool`` Include the image for notifications
+        :param notification_types: ``str`` Notification types to query for
+        :return: ``list`` Notifications where each notification is a dict
         """
+        # TODO: Create a class representing an notification
         notification_resp = self._session.get(
             self.url + "notifications",
             params={
@@ -100,13 +92,10 @@ class Organization(SharedAttributes):
 
     def get_poi(self) -> list:
         """
-        Gets all the people of interest for an organization
-
-        ToDo: Create custom POI class
-        Returns
-        -------
-        A list of people of interest
+        Get all the people of interest for an organization
+        :return: ``list`` People of interest
         """
+        # ToDo: Create custom POI class
         get_poi_resp = self._session.get(self.url + "persons_of_interest")
         try:
             get_poi_resp.raise_for_status()
@@ -116,16 +105,10 @@ class Organization(SharedAttributes):
 
     def create_poi(self, image: str, label: str = None) -> str:
         """
-        Creates a person of interest for the organization
-        ToDo: Create custom POI class
-        Parameters
-        ----------
-        image: The path to a photo of the person
-        label: The label for the person
-
-        Returns
-        -------
-        A string of the person ID who was created
+        Create a person of interest for the organization
+        :param image: ``str`` Path to a photo of the person
+        :param label: ``str`` Label for the person
+        :return: ``str`` Person ID who was created
         """
         with open(image, "rb") as image_file:
             encoded_image = base64.urlsafe_b64encode(image_file.read())
@@ -140,17 +123,10 @@ class Organization(SharedAttributes):
 
     def update_poi(self, person_id: str, label: str) -> str:
         """
-        Adds/changes a label for a person of interest
-
-        ToDo: Create custom POI class
-        Parameters
-        ----------
-        person_id: The person id to add/change the label for
-        label: The label to all the person
-
-        Returns
-        -------
-        The person ID that had a label change
+        Change a label for a person of interest
+        :param person_id: ``str`` Person id to change the label for
+        :param label: ``str`` Label of the person
+        :return: ``str`` Person ID that had a label change
         """
         return (
             self._session.patch(
@@ -161,18 +137,11 @@ class Organization(SharedAttributes):
             .get("person_id")
         )
 
-    def delete_poi(self, person_id: str):
+    def delete_poi(self, person_id: str) -> str:
         """
-        Deletes a person of interest
-
-        ToDo: Create custom POI class
-        Parameters
-        ----------
-        person_id: The person ID to delete
-
-        Returns
-        -------
-        A string of the person of interest that was deleted
+        Delete a person of interest
+        :param person_id: ``str`` Person ID to delete
+        :return: ``str`` Person ID that was deleted
         """
         return (
             self._session.delete(self.url + "persons_of_interest/{}".format(person_id))
