@@ -14,6 +14,10 @@ class SharedAttributes:
         self._session = self._create_session()
 
     def _create_session(self) -> requests.Session:
+        """
+        Create a session to use with the API Key already set as a header
+        :return: requests.Session
+        """
         session = requests.Session()
         session.headers.update(
             {"x-api-key": self.api_key, "User-Agent": "verkadapy v: 1.0.0"}

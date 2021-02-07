@@ -42,10 +42,10 @@ def test_failed_camera_footage(failed_footage_link):
 def test_camera_thumbnail(camera_thumbnail_link):
     org = Organization(org_id="test_org_id", api_key="test_api_key")
     camera = org.cameras[0]
-    assert camera.get_thumbnail(200) == "https://command.verkada.com/thumbnail"
+    assert camera.get_thumbnail_link(200) == "https://command.verkada.com/thumbnail"
 
 
 def test_failed_thumbnail(failed_camera_thumbnail):
     org = Organization(org_id="test_org_id", api_key="test_api_key")
     camera = org.cameras[0]
-    assert camera.get_thumbnail(200) == ""
+    assert camera.get_thumbnail_link(200) == ""
