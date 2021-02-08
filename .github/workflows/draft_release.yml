@@ -19,7 +19,7 @@ jobs:
 
       - name: Build
         run: |
-          python setup.py sdist bdist_wheel
+          make build
           SDIST_PATH=$(ls dist/*.tar.gz)
           SDIST_NAME=$(basename $SDIST_PATH)
           WHEEL_PATH=$(ls dist/*.whl)

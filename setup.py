@@ -10,6 +10,7 @@ setup(
         version="1.0.0",
         description="Unofficial Verkada API Python Library",
         long_description=readme,
+        long_description_content_type="text/markdown",
         author="Cyber_Jake",
         author_email="jake@jwhite.network",
         url="https://github.com/Cyb3r-Jak3/Verkada_py",
@@ -35,7 +36,7 @@ setup(
         install_requires=install_reqs,
         license="MPL 2.0",
         zip_safe=False,
-        keywords="template, github",
+        keywords="verkada, restapi",
         classifiers=[
             "Development Status :: 5 - Production/Stable",
             "Intended Audience :: Developers",
