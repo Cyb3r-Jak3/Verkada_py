@@ -22,6 +22,15 @@ clean-pyc:
 	find . -name '*.pyo' -exec $(RM) {} +
 	find . -name '*~' -exec $(RM) {} +
 
+build:
+	python setup.py sdist bdist_wheel
+
+check-dist:
+	pip install twine --quiet
+	python setup.py egg_info
+	python setup.py sdist bdist_wheel
+	twine check --strict dist/*
+
 docs:
 	sphinx-apidoc -f -o docs/ verkada_py
 	$(MAKE) -C docs clean
