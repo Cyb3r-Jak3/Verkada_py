@@ -5,6 +5,6 @@
 
 
 An unofficial Verkada API Python Library. Useful for individuals or companies looking to easily and pragmatically interact with their Verkada cameras. The goal of this library is to make it easier for developers to interact with Verkada's API.
-Read the documentation here: https://verkada_py.docs.jwhite.network
+Read the documentation here: https://verkada-py.docs.jwhite.network
 
 Read Verkada's REST API's Documentation here: https://apidocs.verkada.com.
