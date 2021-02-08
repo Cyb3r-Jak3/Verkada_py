@@ -7,7 +7,7 @@ readme = open("README.md").read()
 
 setup(
         name="verkada_py",
-        version="1.0.0",
+        version="1.0.0.post1",
         description="Unofficial Verkada API Python Library",
         long_description=readme,
         long_description_content_type="text/markdown",
