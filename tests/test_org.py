@@ -37,14 +37,14 @@ def test_organization_notifications(requests_mock, default_org):
     assert isinstance(notifications, list)
     assert len(notifications) == 2
     notification = notifications[0]
-    assert notification["notification_type"] == "person_of_interest"
-    assert len(notification["objects"]) == 0
-    assert notification["camera_id"] == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
-    assert notification["crowd_threshold"] is None
-    assert notification["person_label"] == "API DUMMY"
-    assert notification["created"] == 156156156
-    assert notification["video_url"] == "https://www.google.com/video"
-    assert notification["image_url"] == "https://www.google.com/image"
+    assert notification.notification_type == "person_of_interest"
+    assert len(notification.objects) == 0
+    assert notification.camera_id == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
+    assert notification.crowd_threshold is None
+    assert notification.person_label == "API DUMMY"
+    assert notification.created == 156156156
+    assert notification.video_url == "https://www.google.com/video"
+    assert notification.image_url == "https://www.google.com/image"
 
 
 def test_organization_get_poi(get_poi):
@@ -52,11 +52,11 @@ def test_organization_get_poi(get_poi):
     poi = org.get_poi()
     assert len(poi) == 1
     single_entry = poi[0]
-    assert single_entry["label"] == "API DUMMY"
-    assert single_entry["person_id"] == "078bffa7-20cf-4307-a047-29e98b340e8e"
-    assert single_entry["created"] == 156156156
-    assert single_entry["last_seen_camera_id"] == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
-    assert single_entry["last_seen"] == 1561561565
+    assert single_entry.label == "API DUMMY"
+    assert single_entry.person_id == "078bffa7-20cf-4307-a047-29e98b340e8e"
+    assert single_entry.created == 156156156
+    assert single_entry.last_seen_camera == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
+    assert single_entry.last_seen == 1561561565
 
 
 def test_failed_poi(get_failed_poi):

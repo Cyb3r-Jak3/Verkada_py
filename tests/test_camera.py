@@ -19,6 +19,8 @@ def test_camera(default_org):
     assert camera.serial == "E38D-BAEB-67C8"
     assert camera.site == "API MOCK Site"
     assert camera.cam_url == "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
+    assert camera.last_online == 200
+    assert camera.status == "Live"
     assert str(camera) == repr(camera) == "Verkada Camera API MOCK Camera"
 
 

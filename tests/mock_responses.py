@@ -12,6 +12,8 @@ camera_response = {
         "name": "API MOCK Camera",
         "serial": "E38D-BAEB-67C8",
         "site": "API MOCK Site",
+        "last_online": 200,
+        "status": "Live"
         }
     ]
 }
