@@ -12,3 +12,5 @@
 
 * [ ] Changelog updated
 * [ ] Version number updated
+    * Both setup.py and shared.py
+  
