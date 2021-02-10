@@ -10,6 +10,14 @@ def default_org(requests_mock):
 
 
 @pytest.fixture
+def camera_objects(requests_mock, default_org):
+    return requests_mock.get(
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/objects/counts?start_time=100&end_time=200",
+        json=camera_object_response
+    )
+
+
+@pytest.fixture
 def failure_org(requests_mock):
     return requests_mock.get("https://api.verkada.com/orgs/test_org_id/cameras",
                              status_code=500)

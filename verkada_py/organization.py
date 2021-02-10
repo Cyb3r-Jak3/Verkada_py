@@ -1,6 +1,7 @@
 """Organization Class"""
 # Built-in
 import base64
+import functools
 from typing import List
 
 # 3rd Party
@@ -9,6 +10,23 @@ from requests import HTTPError
 # Internal
 from verkada_py.shared import SharedAttributes
 from verkada_py.camera import Camera
+from verkada_py.modals import Notification, PersonofInterest
+
+
+def get_poi_id_from_poi(func):
+    """
+    Decorator that gets a person of interest ID if using custom POI class
+    """
+
+    @functools.wraps(func)
+    def inner(*args):
+        if isinstance(args[1], PersonofInterest):
+            changed_args = list(args)
+            changed_args[1] = changed_args[1].person_id
+            args = tuple(changed_args)
+        return func(*args)
+
+    return inner
 
 
 class Organization(SharedAttributes):
@@ -52,7 +70,7 @@ class Organization(SharedAttributes):
         include_image: bool = False,
         notification_types: str = "person_of_interest,tamper,crowd,"
         "motion,camera_offline,camera_online",
-    ) -> List[dict]:
+    ) -> List[Notification]:
         """
         Get all the notifications for an organization
         :param start_time: ``int`` Start epoch time
@@ -61,7 +79,6 @@ class Organization(SharedAttributes):
         :param notification_types: ``str`` Notification types to query for
         :return: ``list`` Notifications where each notification is a dict
         """
-        # TODO: Create a class representing an notification
         notification_resp = self._session.get(
             self.url + "notifications",
             params={
@@ -88,18 +105,19 @@ class Organization(SharedAttributes):
             )
             notifications.extend(sub_notification_resp.json()["notifications"])
             page_cursor = sub_notification_resp.json()["page_cursor"]
-        return notifications
+        return [Notification(x) for x in notifications]
 
-    def get_poi(self) -> list:
+    def get_poi(self) -> List[PersonofInterest]:
         """
         Get all the people of interest for an organization
         :return: ``list`` People of interest
         """
-        # ToDo: Create custom POI class
         get_poi_resp = self._session.get(self.url + "persons_of_interest")
         try:
             get_poi_resp.raise_for_status()
-            return get_poi_resp.json()["persons_of_interest"]
+            return [
+                PersonofInterest(x) for x in get_poi_resp.json()["persons_of_interest"]
+            ]
         except HTTPError:
             return []
 
@@ -121,6 +139,7 @@ class Organization(SharedAttributes):
             .get("person_id")
         )
 
+    @get_poi_id_from_poi
     def update_poi(self, person_id: str, label: str) -> str:
         """
         Change a label for a person of interest
@@ -137,6 +156,7 @@ class Organization(SharedAttributes):
             .get("person_id")
         )
 
+    @get_poi_id_from_poi
     def delete_poi(self, person_id: str) -> str:
         """
         Delete a person of interest

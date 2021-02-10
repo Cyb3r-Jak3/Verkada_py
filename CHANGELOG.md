@@ -6,5 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [comment]: <> (## [Unreleased])
 
+## [2.0.0] - 2021-02-09
+### Added
+* Custom classes for Notifications and Persons of Interest
+
+### Changes
+* Fixes issue with dist-checking
+* Tests for camera objects
+
 ## [1.0.0] - 2021-02-07
 First Public Release

@@ -20,6 +20,6 @@ class SharedAttributes:
         """
         session = requests.Session()
         session.headers.update(
-            {"x-api-key": self.api_key, "User-Agent": "verkadapy v: 1.0.0"}
+            {"x-api-key": self.api_key, "User-Agent": "verkadapy v: 2.0.0"}
         )
         return session

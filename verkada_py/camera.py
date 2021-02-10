@@ -47,14 +47,14 @@ class Camera(SharedAttributes):
         :return: ``dict`` that contains "people" and "vehicles" with an int for each one.
         """
         object_resp = self._session.get(
-            self.cam_url + "objects/counts",
+            self.cam_url + "/objects/counts",
             params={"start_time": start_time, "end_time": end_time, "per_page": 200},
         )
         count_objects = object_resp.json()["object_counts"]
         page_cursor = object_resp.json()["page_cursor"]
         while page_cursor is not None:
             sub_object_resp = self._session.get(
-                self.cam_url + "object/counts",
+                self.cam_url + "/object/counts",
                 params={
                     "start_time": start_time,
                     "end_time": end_time,
