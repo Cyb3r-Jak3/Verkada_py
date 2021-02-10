@@ -26,7 +26,7 @@ build:
 	python setup.py sdist bdist_wheel
 
 check-dist:
-	pip install twine --quiet
+	pip install twine wheel --quiet
 	python setup.py egg_info
 	python setup.py sdist bdist_wheel
 	twine check --strict dist/*

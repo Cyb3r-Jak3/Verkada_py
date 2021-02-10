@@ -1,6 +1,6 @@
 from time import time
 from verkada_py import Organization
-from .mock_responses import time_response
+from .mock_responses import time_response, camera_object_response_two
 
 
 def test_camera(default_org):
@@ -22,6 +22,16 @@ def test_camera(default_org):
     assert camera.last_online == 200
     assert camera.status == "Live"
     assert str(camera) == repr(camera) == "Verkada Camera API MOCK Camera"
+
+
+def test_camera_objects(requests_mock, camera_objects):
+    org = Organization(org_id="test_org_id", api_key="test_api_key")
+    camera = org.cameras[0]
+    requests_mock.get(
+        "https://api.verkada.com/orgs/test_org_id/cameras/8438a7f2-fdbc-4392-8b9b-d47513bcf5c8/object/counts?start_time=100&end_time=200&per_page=200&page_cursor=go_to_two",
+        json=camera_object_response_two
+    )
+    assert isinstance(camera.get_object_count(100, 200), dict)
 
 
 def test_camera_footage(footage_link, requests_mock):

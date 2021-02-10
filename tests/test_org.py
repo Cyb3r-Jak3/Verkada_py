@@ -47,7 +47,7 @@ def test_organization_notifications(requests_mock, default_org):
     assert notification.image_url == "https://www.google.com/image"
 
 
-def test_organization_get_poi(get_poi):
+def test_organization_get_poi(get_poi, update_poi):
     org = Organization(org_id="test_org_id", api_key="test_api_key")
     poi = org.get_poi()
     assert len(poi) == 1
@@ -57,6 +57,8 @@ def test_organization_get_poi(get_poi):
     assert single_entry.created == 156156156
     assert single_entry.last_seen_camera == "8438a7f2-fdbc-4392-8b9b-d47513bcf5c8"
     assert single_entry.last_seen == 1561561565
+    updated_poi = org.update_poi(single_entry, "API_DUMMY_2")
+    assert updated_poi == "078bffa7-20cf-4307-a047-29e98b340e8e"
 
 
 def test_failed_poi(get_failed_poi):

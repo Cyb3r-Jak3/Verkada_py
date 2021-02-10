@@ -20,8 +20,10 @@ def get_poi_id_from_poi(func):
 
     @functools.wraps(func)
     def inner(*args):
-        if isinstance(args[0], PersonofInterest):
-            args = args[0].person_id
+        if isinstance(args[1], PersonofInterest):
+            changed_args = list(args)
+            changed_args[1] = changed_args[1].person_id
+            args = tuple(changed_args)
         return func(*args)
 
     return inner

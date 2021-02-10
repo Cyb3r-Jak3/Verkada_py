@@ -17,6 +17,37 @@ camera_response = {
         }
     ]
 }
+camera_object_response = {
+    "object_counts": [
+        {
+            "people_count": 1,
+            "detected_time": 1595287853,
+            "vehicle_count": 0
+        },
+        {
+            "people_count": 8,
+            "detected_time": 1595287872,
+            "vehicle_count": 4
+        }
+    ],
+    "page_cursor": "go_to_two"
+}
+
+camera_object_response_two = {
+    "object_counts": [
+        {
+            "people_count": 2,
+            "detected_time": 1595287853,
+            "vehicle_count": 0
+        },
+        {
+            "people_count": 8,
+            "detected_time": 1595287872,
+            "vehicle_count": 4
+        }
+    ],
+    "page_cursor": None
+}
 
 notification_response = {
     "notifications": [
