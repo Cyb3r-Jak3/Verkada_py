@@ -6,6 +6,6 @@ flake8 >= 3.8.4
 pylint >= 2.6.0
 pytest >= 6.2.2
 pytest-cov >= 2.11.1
-requests-mock[fixture] == 1.8.0
+requests-mock[fixture] == 1.9.2
 sphinx >= 3.4.3
 sphinx_rtd_theme
