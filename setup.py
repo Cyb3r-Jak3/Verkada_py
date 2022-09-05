@@ -31,7 +31,7 @@ setup(
             "pylint>=2.6.0",
             "pytest>=6.1.2",
             "pytest-cov>=2.10.1",
-            "requests-mock[fixture]==1.9.3"
+            "requests-mock[fixture]==1.10.0"
         ],
         install_requires=install_reqs,
         license="MPL 2.0",
