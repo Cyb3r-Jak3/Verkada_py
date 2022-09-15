@@ -149,7 +149,7 @@ class Organization(SharedAttributes):
         """
         return (
             self._session.patch(
-                self.url + "persons_of_interest/{}".format(person_id),
+                self.url + f"persons_of_interest/{person_id}",
                 json={"label": label},
             )
             .json()
@@ -164,7 +164,7 @@ class Organization(SharedAttributes):
         :return: ``str`` Person ID that was deleted
         """
         return (
-            self._session.delete(self.url + "persons_of_interest/{}".format(person_id))
+            self._session.delete(self.url + f"persons_of_interest/{person_id}")
             .json()
             .get("person_id")
         )
