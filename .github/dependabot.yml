@@ -12,3 +12,17 @@ updates:
       prefix: "Pip Update"
     reviewers:
       - "Cyb3r-Jak3"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    labels:
+      - "dependencies"
+    schedule:
+      interval: "monthly"
+    assignees:
+      - "Cyb3r-Jak3"
+    commit-message:
+      prefix: "Action Update"
+    reviewers:
+      - "Cyb3r-Jak3"
